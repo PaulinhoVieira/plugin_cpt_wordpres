@@ -50,10 +50,10 @@ if(!class_exists( 'PV_Slider_Post_type' )){
       require_once( PV_SLIDER_PATH . 'views/pv-slider_metabox.php');
     }
     public function save_post($post_id){
-      if( isset($post_id['action']) && $post_id['action'] == 'editpost' ){
+      if( isset($_POST['action']) && $_POST['action'] == 'editpost' ){
         $old_link_text = get_post_meta( $post_id, 'pv_slider_link_text', true );
         $new_link_text = $_POST['pv_slider_link_text'];
-        $old_link_url = get_post_meta( $post_id, 'pv_slider_link_text', true );
+        $old_link_url = get_post_meta( $post_id, 'pv_slider_link_url', true );
         $new_link_url = $_POST['pv_slider_link_url'];;
 
         update_post_meta($post_id, 'pv_slider_link_text', $new_link_text, $old_link_text);
