@@ -7,6 +7,9 @@ if(!class_exists( 'PV_Slider_Post_type' )){
       add_action( 'init', array( $this, 'create_post_type' ) );
       add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
       add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
+      add_filter( 'manage_pv-slider_posts_columns', array( $this, 'pv_slider_cpt_columns' ) );
+      add_action( 'manage_pv-slider_posts_custom_column', array( $this, 'pv_slider_custom_columns' ), 10, 2 );
+      add_filter( 'manage_edit-pv-slider_sortable_columns', array( $this, 'pv_slider_sortable_columns' ) );
     }
 
     public function create_post_type(){
@@ -35,6 +38,29 @@ if(!class_exists( 'PV_Slider_Post_type' )){
         )
       );
     }
+
+    public function pv_slider_cpt_columns( $columns ) {
+      $columns['pv_slider_link_text'] = esc_html__( 'Link Text', 'pv-slider' );
+      $columns['pv_slider_link_url'] = esc_html__( 'Link URL', 'pv-slider' );
+      return $columns;
+    }
+
+    public function pv_slider_custom_columns( $columns, $post_id ) {
+      switch($columns){
+        case 'pv_slider_link_text':
+          echo esc_html( get_post_meta( $post_id, 'pv_slider_link_text', true ) );
+        break;
+        case 'pv_slider_link_url':
+          echo esc_url( get_post_meta( $post_id, 'pv_slider_link_url', true ) );
+        break;
+      }
+    }
+
+    public function pv_slider_sortable_columns( $columns ) {
+      $columns['pv_slider_link_text'] = 'pv_slider_link_text';
+      return $columns;
+    }
+
     public function add_meta_boxes(){
       add_meta_box(
         'pv_slider_meta_box',

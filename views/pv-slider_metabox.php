@@ -32,7 +32,7 @@
       name="pv_slider_link_url"
       id="pv_slider_link_url"
       class="regular-text link-url"
-      value="<?php echo ( isset( $link_url ) ) ? esc_url($link_url/*$meta['pv_slider_link_url'][0]*/) : ''; ?>"
+      value="<?php echo ( isset( $link_url ) ) ? esc_url($link_url) : ''; /*$meta['pv_slider_link_url'][0]*/?>"
       required
       >
     </td>
