@@ -26,6 +26,8 @@ if ( !class_exists( 'PV_Slider' ) ){
 
       require_once(PV_SLIDER_PATH . 'post-types/class.pv-slider-cpt.php');
       $PV_Slider_Post_type = new PV_Slider_Post_type();
+      require_once(PV_SLIDER_PATH . 'class.pv-slider-settings.php');
+      $PV_slider_Settings = new PV_Slider_Settings();
     }
 
     public function define_constants(){
@@ -76,7 +78,7 @@ if ( !class_exists( 'PV_Slider' ) ){
       );
     }
     public function pv_slider_settings_page(){
-      echo 'pagina teste';
+      require ( PV_SLIDER_PATH . 'views/settings-page.php' );
     }
   }
 }
