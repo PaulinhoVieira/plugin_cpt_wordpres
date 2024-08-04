@@ -13,37 +13,70 @@
  * Text Domain: pv-slider
  * Domain Path: /languages
  */
-if (!defined('ABSPATH')) {
+if ( !defined( 'ABSPATH' ) ) {
   exit;
 }
 
-if (!class_exists('PV_Slider')) {
-  class PV_Slider
-  {
-    function __construct()
-    {
+if ( !class_exists( 'PV_Slider' ) ){
+  class PV_Slider{
+    function __construct(){
       $this->define_constants();
+
+      add_action( 'admin_menu', array( $this, 'add_menu' ) );
 
       require_once(PV_SLIDER_PATH . 'post-types/class.pv-slider-cpt.php');
       $PV_Slider_Post_type = new PV_Slider_Post_type();
     }
-    public function define_constants()
-    {
+
+    public function define_constants(){
       define('PV_SLIDER_PATH', plugin_dir_path(__FILE__));
       define('PV_SLIDER_URL', plugin_dir_url(__FILE__));
       define('PV_SLIDER_VERSION', '1.0.0');
     }
-    public static function activate()
-    {
+
+    public static function activate(){
       //flush_rewrite_rules();
       update_option('rewrite_rules', '');
     }
-    public static function deactivate()
-    {
+
+    public static function deactivate(){
       flush_rewrite_rules();
     }
-    public static function uninstall()
-    {
+
+    public static function uninstall(){}
+
+    public function add_menu(){
+      add_menu_page(
+        'PV Slider Options',
+        'PV Slider',
+        'manage_options',
+        'pv_slider_admin',
+        array( $this, 'pv_slider_settings_page' ),
+        'dashicons-images-alt2'
+      );
+
+      add_submenu_page(
+        'pv_slider_admin',
+        'Manage Slides',
+        'Manage Slides',
+        'manage_options',
+        'edit.php?post_type=pv-slider',
+        null,
+        null
+      );
+
+      add_submenu_page(
+        'pv_slider_admin',
+        'Add New Slider',
+        'Add New Slider',
+        'manage_options',
+        'post-new.php?post_type=pv-slider',
+        null,
+        null
+      );
+    }
+    public function pv_slider_settings_page(){
+      echo 'pagina teste';
     }
   }
 }
