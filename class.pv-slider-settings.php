@@ -116,11 +116,11 @@ if( ! class_exists('PV_Slider_Settings')){
       id="pv_slider_style"
       >
         <?php
-        foreach( $args['items'] as $items ):
+        foreach( $args['items'] as $item ):
         ?>
-        <option value="<?php echo esc_attr( $items ); ?>">
-          <?php isset( self::$options[ 'pv_slider_style' ] ) ? selected( 'style-1', self::$options[ 'pv_slider_style' ], true) : ''; ?>
-          <?php echo esc_attr( ucfirst( $items ) ) ?>
+        <option value="<?php echo esc_attr( $item ); ?>">
+          <?php isset( self::$options[ 'pv_slider_style' ] ) ? selected( $item, self::$options[ 'pv_slider_style' ], true) : ''; ?>
+          <?php echo esc_html( ucfirst( $item ) ) ?>
         </option>
         <?php endforeach; ?>
       </select>
