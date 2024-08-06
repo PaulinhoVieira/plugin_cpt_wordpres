@@ -78,6 +78,14 @@ if ( !class_exists( 'PV_Slider' ) ){
       );
     }
     public function pv_slider_settings_page(){
+      if( ! current_user_can( 'manage_options' ) ){
+        return;
+      }
+      if( isset( $_GET['settings-updated'] ) ){
+        add_settings_error( 'pv_slider_options', 'pv_slider_message', 'Sttings Saved', 'success' );
+      }
+      settings_errors( 'pv_slider_options' );
+      
       require ( PV_SLIDER_PATH . 'views/settings-page.php' );
     }
   }

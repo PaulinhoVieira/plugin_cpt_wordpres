@@ -12,7 +12,7 @@ if( ! class_exists('PV_Slider_Settings')){
 
     public function admin_init(){
       
-      register_setting( 'pv_slider_group', 'pv_slider_options' );
+      register_setting( 'pv_slider_group', 'pv_slider_options', array( $this, 'pv_slider_validate' ) );
       
       add_settings_section(
         'pv_slider_main_section',
@@ -118,13 +118,39 @@ if( ! class_exists('PV_Slider_Settings')){
         <?php
         foreach( $args['items'] as $item ):
         ?>
-        <option value="<?php echo esc_attr( $item ); ?>">
+        <option value="<?php echo esc_attr( $item ); ?>"
           <?php isset( self::$options[ 'pv_slider_style' ] ) ? selected( $item, self::$options[ 'pv_slider_style' ], true) : ''; ?>
+          >
           <?php echo esc_html( ucfirst( $item ) ) ?>
         </option>
         <?php endforeach; ?>
       </select>
       <?php
+    }
+
+    public function pv_slider_validate( $input ){
+      $new_input = array();
+      foreach( $input as $key => $value){
+        switch($key){ // exemplos de como sanitizar varios campos com tipos diferentes de entrada
+          case 'pv_slider_title':
+            if( empty( $value ) ){
+              add_settings_error( 'pv_slider_options', 'pv_slider_message', 'the title fild can not be left empty!', 'error' );
+              $value = 'please, type some text!';
+            }
+            $new_input[$key] = sanitize_text_field( $value );
+          break;
+          /*case 'pv_slider_url':
+            $new_input[$key] = esc_url_raw( $value );
+          break;
+          case 'pv_slider_int':
+            $new_input[$key] = absint( $value );
+          break;*/
+          default:
+          $new_input[$key] = sanitize_text_field( $value );
+          break;
+        }
+      }
+      return $new_input;
     }
   }
 }
