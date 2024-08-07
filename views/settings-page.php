@@ -9,7 +9,7 @@
   </h2>
   <form action="options.php" method="post">
     <?php
-      if($activate_tab == 'main_options'){
+      if( $activate_tab == 'main_options' ){
         settings_fields( 'pv_slider_group' );
         do_settings_sections( 'pv_slider_page1' );
       }else{
