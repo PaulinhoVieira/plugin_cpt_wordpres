@@ -26,8 +26,13 @@ if ( !class_exists( 'PV_Slider' ) ){
 
       require_once(PV_SLIDER_PATH . 'post-types/class.pv-slider-cpt.php');
       $PV_Slider_Post_type = new PV_Slider_Post_type();
+
       require_once(PV_SLIDER_PATH . 'class.pv-slider-settings.php');
       $PV_slider_Settings = new PV_Slider_Settings();
+
+      require_once(PV_SLIDER_PATH . 'shortcodes/class.pv-slider-shortcode.php');
+      $PV_Slider_Shortcode = new PV_Slider_Shortcode();
+
     }
 
     public function define_constants(){
