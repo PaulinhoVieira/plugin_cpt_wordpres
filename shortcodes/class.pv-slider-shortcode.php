@@ -21,6 +21,11 @@ if( ! class_exists( 'PV_Slider_Shortcode' ) ){
       if( !empty( $id ) ) {
         $id =  array_map( 'absint', explode( ',', $id ) );
       }
+
+
+      ob_start();
+      require( PV_SLIDER_PATH . 'views/pv-slider_shortcode.php' );
+      return ob_get_clean();
     }
   }
 }
