@@ -25,7 +25,7 @@
                 <h2><?php the_title(); ?></h2>
               </div>
               <div class="slider-description">
-                <div class="subtitle"><?php //the_content(); ?></div>
+                <div class="subtitle"><?php the_content(); ?></div>
                 <a class = "link" href="<?php echo esc_attr($button_url); ?>"> <?php echo esc_html($button_text); ?></a>
               </div>
             </div>
