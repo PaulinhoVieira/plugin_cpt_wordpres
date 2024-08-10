@@ -32,7 +32,7 @@ if ( !class_exists( 'PV_Slider' ) ){
 
       require_once(PV_SLIDER_PATH . 'shortcodes/class.pv-slider-shortcode.php');
       $PV_Slider_Shortcode = new PV_Slider_Shortcode();
-
+      
       add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 999 );
       add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts') );
     }
@@ -104,8 +104,8 @@ if ( !class_exists( 'PV_Slider' ) ){
     }
 
     public function register_admin_scripts(){
-      global $typeNow;
-      if( $typeNow == 'pv-slider' ){
+      global $typenow;
+      if( $typenow == 'pv-slider' ){
         wp_enqueue_style( 'pv-slider-admin', PV_SLIDER_URL . 'assets/css/admin.css' );
       }
     }

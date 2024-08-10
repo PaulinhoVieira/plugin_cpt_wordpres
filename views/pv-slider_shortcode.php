@@ -1,6 +1,6 @@
-<h3><?php echo ( !empty( $content ) ) ? esc_html( $content ) : esc_html( PV_Slider_Settings::$options[ 'pv_slider_title' ] ); ?></h3>
+<h3><?php echo ( ! empty ( $content ) ) ? esc_html( $content ) : esc_html( PV_Slider_Settings::$options[ 'pv_slider_title' ] ); ?></h3>
 <div class="pv-slider flexslider ">
-  <ul class ="slider">
+  <ul class ="slides">
     <?php 
     $args = array(
       'post_type' => 'pv-slider',
