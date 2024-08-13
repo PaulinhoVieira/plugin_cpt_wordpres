@@ -17,7 +17,7 @@
       $button_url = get_post_meta( get_the_ID(), 'pv_slider_link_url', true );
     ?>
       <li>
-        <?php the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) ); ?>
+      <?php the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) ); ?>
         <div class="pvs-container">
           <div class="slider-details-container">
             <div class="wrapper">
