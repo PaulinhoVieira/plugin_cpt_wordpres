@@ -1,5 +1,6 @@
 <h3><?php echo ( ! empty ( $content ) ) ? esc_html( $content ) : esc_html( PV_Slider_Settings::$options[ 'pv_slider_title' ] ); ?></h3>
-<div class="pv-slider flexslider ">
+<div class="pv-slider flexslider <?php echo (isset( PV_Slider_Settings::$options[ 'pv_slider_style'] ) ) ? 
+esc_attr( PV_Slider_Settings::$options[ 'pv_slider_style'] ) : 'style-1'; ?>">
   <ul class ="slides">
     <?php 
     $args = array(
@@ -17,7 +18,14 @@
       $button_url = get_post_meta( get_the_ID(), 'pv_slider_link_url', true );
     ?>
       <li>
-      <?php the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) ); ?>
+      <?php 
+      if( has_post_thumbnail() ){
+        the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) ); 
+      }else{
+        echo "<img src='" . PV_SLIDER_URL . "assets/images/default.png' class='img-fluid wp-post-image'/>";
+      }
+      
+      ?>
         <div class="pvs-container">
           <div class="slider-details-container">
             <div class="wrapper">

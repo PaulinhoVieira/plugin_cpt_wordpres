@@ -74,3 +74,37 @@
 .pv-slider .flex-control-nav li {
     margin: 0 3px !important;
 }
+
+/* Design Options */
+
+/* Style 1 */
+
+.pv-slider.style-1 .slider-details-container .link{
+    background-color: #1d4671;
+}
+
+.pv-slider.style-1 .flex-control-paging li a.flex-active {
+    background: rgb(182, 2, 2) !important;
+}
+
+.pv-slider.style-1 .flex-control-paging li a {
+    background: rgb(247, 247, 247);
+}
+
+/* Style 2 */
+
+.pv-slider.style-2 .slider-details-container .link{
+    background-color: #71481d;
+}
+
+.pv-slider.style-2 .flex-control-paging li a.flex-active {
+    background: rgb(2, 182, 14) !important;
+    width: 25px;
+}
+
+.pv-slider.style-2 .flex-control-paging li a {
+    background: rgb(247, 247, 247);
+    height: 10px;
+    width: 15px;
+    border-radius: 0;
+}
